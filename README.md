@@ -1,16 +1,58 @@
-# React + Vite
+# DataHub Catalogue UI (React + Tailwind)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight React app that replicates a **DataHub-style** UI:
 
-Currently, two official plugins are available:
+- ✅ Login screen
+- ✅ Catalogue/Dashboard with left **category tree** and right **results table**
+- ✅ **Dataset switching** (India & States ↔ Dataset – IMF)
+- ✅ **Pagination** (10 rows per page)
+- ✅ Performance optimizations for large JSON (IMF) using a **Web Worker**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Demo Credentials
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Use the following credentials to login:
 
-## Expanding the ESLint configuration
+- **Email:** `admin@demo.com`
+- **Password:** `Admin@123`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+> Authentication is demo-only (client-side) and intended for UI flow.
+
+---
+
+## Features
+
+### 1) Login Page
+- Clean login UI (similar to the provided reference image)
+- Basic credential check
+- Stores auth flag in `localStorage`
+
+### 2) Catalogue/Dashboard
+- **Top navbar** with search input (UI only), dataset switcher, and user avatar/logout
+- **Sidebar**: dynamically renders categories from JSON
+  - Lazy expansion: children nodes render only when expanded (keeps UI snappy)
+- **Right pane**: table of frequent items
+
+### 3) Pagination
+- 10 records per page
+- Simple Prev/Next controls and page status
+
+### 4) Dataset Switching
+- **India & States** → loads `src/data/response1.json`
+- **Dataset – IMF** → loads `src/data/response2.json`
+
+### 5) Performance for Large `response2.json`
+- The IMF dataset is loaded on-demand and parsed in a **Web Worker**
+- Prevents main-thread blocking and UI freezing
+- Sidebar tree is lazily rendered on expand to avoid heavy upfront rendering
+
+---
+
+## Tech Stack
+
+- **React** (Vite)
+- **JavaScript**
+- **Tailwind CSS**
+- **React Router**
+- **Web Worker** (for large JSON parse)
